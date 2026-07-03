@@ -1,0 +1,11 @@
+# OS
+.DS_Store
+
+# secrets / local env (никогда не коммить токены)
+.env
+.env.*
+!.env.example
+
+# logs / temp
+*.log
+tmp/

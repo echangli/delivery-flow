@@ -1,0 +1,15 @@
+{
+  "name": "delivery-toolkit",
+  "description": "⟪ADAPT: internal AI toolkit — Claude Code plugins for your product/delivery team.⟫",
+  "owner": {
+    "name": "Eduard Changli",
+    "email": "⟪ADAPT: контакт (по умолчанию — github.com/echangli)⟫"
+  },
+  "plugins": [
+    {
+      "name": "delivery",
+      "source": "./plugins/delivery",
+      "description": "Step-by-step flow that takes a card/idea/bug from concept to a frontender-approved draft MR — usable even by non-coders."
+    }
+  ]
+}

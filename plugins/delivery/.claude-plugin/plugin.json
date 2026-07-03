@@ -1,0 +1,9 @@
+{
+  "name": "delivery",
+  "description": "Guides any teammate (incl. non-coders) through feature/bug delivery: idea/bug → design+prototype → implementation in the frontend repo → local check + QA smoke → draft MR with a pre-filled English description → frontender review. Merge/deploy only by QA/frontender after approval.",
+  "author": {
+    "name": "Eduard Changli",
+    "url": "https://github.com/echangli"
+  },
+  "keywords": ["delivery", "frontend", "merge-request", "workflow", "qa"]
+}
