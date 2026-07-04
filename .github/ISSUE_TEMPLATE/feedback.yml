@@ -1,0 +1,50 @@
+name: "💬 Обратная связь по флоу"
+description: "Что было неудобно, где затык, что улучшить в процессе доставки"
+title: "[Фидбек] "
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: "Спасибо за фидбек! Он помогает улучшать флоу. Пиши по-русски, свободно."
+  - type: dropdown
+    id: track
+    attributes:
+      label: Трек
+      description: На каком треке работал(а)?
+      options:
+        - "A — новая фича/идея"
+        - "B — багфикс/правка существующего"
+        - "C — вход в готовый MR / стейдж / тексты"
+        - "Не уверен(а)"
+    validations:
+      required: false
+  - type: input
+    id: step
+    attributes:
+      label: На каком шаге
+      description: Установка, дизайн, реализация, локальная проверка, QA-смоук, MR…
+      placeholder: "напр. QA-смоук на стейдже"
+    validations:
+      required: false
+  - type: textarea
+    id: what
+    attributes:
+      label: Что произошло / что было неудобно
+      description: Опиши затык, тупик или неудобство своими словами.
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Как улучшить (предложение)
+      description: Если есть идея, как сделать лучше.
+    validations:
+      required: false
+  - type: textarea
+    id: notes
+    attributes:
+      label: Лог заметок агента (необязательно)
+      description: Если агент собрал `delivery-notes` / `delivery-retro` — вставь сюда, это ускорит разбор.
+      render: markdown
+    validations:
+      required: false

@@ -82,3 +82,14 @@
 /plugin marketplace update delivery-toolkit
 /reload-plugins
 ```
+
+---
+
+## Обратная связь
+
+Нашёл затык, баг или идею по процессу — заведи issue: **[создать issue](https://github.com/echangli/delivery-flow/issues/new/choose)**
+(формы на русском: фидбек по флоу / баг / идея). Вопросы и свободные идеи — в
+**[Discussions](https://github.com/echangli/delivery-flow/discussions)**.
+
+Плагин и сам в конце работы предложит отправить фидбек — соберёт готовую ссылку на issue из своего лога
+заметок, тебе останется нажать. Это помогает улучшать флоу по реальным кейсам.

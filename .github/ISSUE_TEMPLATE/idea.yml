@@ -1,0 +1,12 @@
+name: "💡 Идея / улучшение"
+description: "Предложение по флоу, скиллам или новому сценарию"
+title: "[Идея] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Идея
+      description: Что предлагаешь и какую проблему это решает. По-русски.
+    validations:
+      required: true

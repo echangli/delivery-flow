@@ -1,0 +1,33 @@
+name: "🐛 Баг в плагине"
+description: "Плагин повёл себя не так, скилл сломался, команда не сработала"
+title: "[Баг] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Опиши по-русски, что сломалось. Секреты/токены не вставляй."
+  - type: textarea
+    id: what
+    attributes:
+      label: Что случилось
+      description: Что пошло не так и чего ты ожидал(а).
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Шаги воспроизведения
+      placeholder: |
+        1. Запустил(а) /deliver
+        2. …
+        3. Увидел(а) …
+    validations:
+      required: false
+  - type: input
+    id: version
+    attributes:
+      label: Версия плагина (если знаешь)
+      description: "Из `/plugin` → Marketplaces → delivery-toolkit; или коммит/дата."
+      placeholder: "напр. коммит abc1234 / обновлял вчера"
+    validations:
+      required: false
