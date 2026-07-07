@@ -3,12 +3,16 @@
 # SessionStart hook — report plugin freshness at session start.
 #
 # Up to date  => confirm in one short line, including the installed version's commit date.
-# Out of date => warn with a beginner how-to (manual `/plugin update` + restart).
+# Out of date => warn with a beginner how-to (terminal `claude plugin update` + restart).
 #
 # Why: for third-party (git) marketplaces, Claude Code's autoUpdate pulls the marketplace
 # clone but does NOT roll the installed plugin forward, and a restart does not reliably fix
 # it, so teammates end up running a stale plugin. This hook detects the gap and tells the
-# user how to update. It only NOTIFIES — the fix is a manual `/plugin update` + restart.
+# user how to update. It only NOTIFIES — the fix is manual `claude plugin update` + restart.
+#
+# IMPORTANT: the fix is a SHELL command (`claude plugin update …`), NOT the slash-command
+# `/plugin update …` typed inside Claude Code — the slash form only opens the plugin menu
+# and does not update. And an update needs a full restart (`/reload-plugins` is not enough).
 #
 # Generic: plugin name, marketplace name and installed SHA are all derived from
 # CLAUDE_PLUGIN_ROOT, so this exact file works in every variant of the plugin.
@@ -80,11 +84,12 @@ case "$latest" in
 esac
 
 latest_short="${latest:0:7}"
-update_cmd="/plugin update ${plugin}@${marketplace}"
+mp_cmd="claude plugin marketplace update ${marketplace}"
+up_cmd="claude plugin update ${plugin}@${marketplace}"
 
 # --- emit the nudge as SessionStart additionalContext (the model relays it) ---
 # No double quotes / backslashes in the message => valid JSON without escaping.
-msg="IMPORTANT — a plugin update is available. The «${plugin}» plugin is out of date (installed ${installed_short}, latest ${latest_short}). At the very START of your first reply this session, show the user — in their language — a SHORT, friendly, numbered how-to written for a COMPLETE BEGINNER. Make crystal clear this is done in a terminal, and that «${update_cmd}» is a Claude Code command typed INSIDE Claude Code (not a plain shell/Terminal command). Use exactly these steps, one per line: (1) open the app «Terminal»; (2) type «claude» and press Enter — Claude Code starts; (3) type «${update_cmd}» and press Enter, then wait until it finishes; (4) close Claude Code and open it again so the new version loads. Output only one short intro line plus the 4 numbered steps — nothing else."
+msg="IMPORTANT — a plugin update is available. The «${plugin}» plugin is out of date (installed ${installed_short}, latest ${latest_short}). At the very START of your first reply this session, show the user — in their language — a SHORT, friendly, numbered how-to written for a COMPLETE BEGINNER. Make crystal clear these are commands for the TERMINAL app (the shell), each starting with «claude» — they are NOT slash-commands typed inside Claude Code; typing «/plugin update» inside Claude Code only opens a menu and does NOT update. Use exactly these steps, one per line: (1) open the app «Terminal»; (2) run «${mp_cmd}» and wait until it finishes; (3) run «${up_cmd}» and wait until it finishes; (4) fully quit Claude Code and open it again so the new version loads — a restart is required, /reload-plugins is not enough. Output only one short intro line plus the 4 numbered steps — nothing else."
 
 printf '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"%s"}}\n' "$msg"
 exit 0

@@ -276,8 +276,11 @@ ls -d ~/.claude/plugins/cache/delivery-toolkit/delivery/*/ 2>/dev/null          
 git ls-remote delivery-toolkit refs/heads/main    # актуальный SHA на main
 ```
 Локального клона marketplace нет → свежий SHA бери через `ls-remote` (а не `origin/main`). Installed
-отстаёт → `/plugin marketplace update delivery-toolkit` → `/reload-plugins`. Если `autoUpdate: true`, а версия
-всё равно отстала — это chicken-and-egg выше: на старте логин к репо marketplace ещё не был в keychain, апдейт — no-op.
+отстаёт → в **терминале** (шелл-команда): `claude plugin update delivery@delivery-toolkit` + **перезапуск
+Claude Code**. ⚠️ Слэш `/plugin update …@…` ВНУТРИ Claude Code НЕ обновляет — открывает меню; а
+`claude plugin marketplace update` тянет только клон, версию не перекатывает — нужен именно `claude plugin
+update …@…`. Если `autoUpdate: true`, а версия всё равно отстала — это chicken-and-egg выше: на старте
+логин к репо marketplace ещё не был в keychain, апдейт — no-op.
 
 **Не блокирующий шаг:** не до настройки сейчас — продолжай флоу; но автообновление стоит включить один
 раз при первом заходе человека.
