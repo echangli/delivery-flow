@@ -69,7 +69,7 @@ update_cmd="/plugin update ${plugin}@${marketplace}"
 
 # --- emit the nudge as SessionStart additionalContext (the model relays it) ---
 # No double quotes / backslashes in the message => valid JSON without escaping.
-msg="IMPORTANT — a plugin update is available. The «${plugin}» plugin is out of date: installed ${installed_short}, latest ${latest_short}. At the very START of your first reply this session, tell the user — in their language, clearly, in a couple of lines — how to update. Make explicit that this is a Claude Code command typed INSIDE Claude Code (the «claude» CLI in a terminal), NOT a shell command. Steps: (1) type «${update_cmd}»; (2) then «/reload-plugins» (or restart Claude Code) to apply."
+msg="IMPORTANT — a plugin update is available. The «${plugin}» plugin is out of date (installed ${installed_short}, latest ${latest_short}). At the very START of your first reply this session, show the user — in their language — a SHORT, friendly, numbered how-to written for a COMPLETE BEGINNER. Make crystal clear this is done in a terminal, and that «${update_cmd}» is a Claude Code command typed INSIDE Claude Code (not a plain shell/Terminal command). Use exactly these steps, one per line: (1) open the app «Terminal»; (2) type «claude» and press Enter — Claude Code starts; (3) type «${update_cmd}» and press Enter, then wait until it finishes; (4) close Claude Code and open it again so the new version loads. Output only one short intro line plus the 4 numbered steps — nothing else."
 
 printf '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"%s"}}\n' "$msg"
 exit 0
