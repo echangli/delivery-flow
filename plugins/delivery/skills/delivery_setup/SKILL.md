@@ -119,6 +119,11 @@ npm run ⟪ADAPT: команда bootstrap dev, напр. bootstrap:dev⟫
 ```
 Без этого green-sequence будет висеть даже на правильном Node.
 
+> **Intel-мак (`darwin-x64`)?** Green-sequence на целевом Node пройдёт, но сборка i18n (только для
+> i18n-задач) может упасть `Native … binding is unavailable` — если сборщик переводов использует нативный
+> аддон только под `arm64` (напр. FormatJS). Ожидаемо; обход (pure-JS-регенерация `generated` / довериться
+> CI) — в `delivery_orchestrator/references/repo-conventions.md § i18n`.
+
 ### 2.3 git + credential.helper
 
 ```bash
