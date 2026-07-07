@@ -3,7 +3,8 @@
 # SessionStart hook — report plugin freshness at session start.
 #
 # Up to date  => confirm in one short line, including the installed version's commit date.
-# Out of date => warn with a beginner how-to (terminal `claude plugin update` + restart).
+# Out of date => the agent OFFERS to run the update itself (shell `claude plugin update`),
+#                then asks the user to restart; falls back to a how-to if it has no shell.
 #
 # Why: for third-party (git) marketplaces, Claude Code's autoUpdate pulls the marketplace
 # clone but does NOT roll the installed plugin forward, and a restart does not reliably fix
@@ -89,7 +90,7 @@ up_cmd="claude plugin update ${plugin}@${marketplace}"
 
 # --- emit the nudge as SessionStart additionalContext (the model relays it) ---
 # No double quotes / backslashes in the message => valid JSON without escaping.
-msg="IMPORTANT — a plugin update is available. The «${plugin}» plugin is out of date (installed ${installed_short}, latest ${latest_short}). At the very START of your first reply this session, show the user — in their language — a SHORT, friendly, numbered how-to written for a COMPLETE BEGINNER. Make crystal clear these are commands for the TERMINAL app (the shell), each starting with «claude» — they are NOT slash-commands typed inside Claude Code; typing «/plugin update» inside Claude Code only opens a menu and does NOT update. Use exactly these steps, one per line: (1) open the app «Terminal»; (2) run «${mp_cmd}» and wait until it finishes; (3) run «${up_cmd}» and wait until it finishes; (4) fully quit Claude Code and open it again so the new version loads — a restart is required, /reload-plugins is not enough. Output only one short intro line plus the 4 numbered steps — nothing else."
+msg="IMPORTANT — a plugin update is available. The «${plugin}» plugin is out of date (installed ${installed_short}, latest ${latest_short}). At the very START of your first reply this session, tell the user this in their language, then OFFER to do the update yourself — these are plain SHELL commands you can run with your terminal/Bash tool, not something the user must type. With the user's go-ahead (or right away if they clearly want it), run «${mp_cmd}» then «${up_cmd}», then tell the user to FULLY RESTART Claude Code to apply — a restart is required, you cannot restart it yourself and /reload-plugins is not enough. If you cannot run shell commands here, or they fail (e.g. no network/VPN to the marketplace), FALL BACK to a short numbered how-to for the user: (1) open the app «Terminal»; (2) run «${mp_cmd}»; (3) run «${up_cmd}»; (4) restart Claude Code. Keep it short. NEVER tell the user to type «/plugin update» inside Claude Code — that only opens a menu and does NOT update."
 
 printf '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"%s"}}\n' "$msg"
 exit 0
