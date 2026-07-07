@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 #
-# SessionStart hook — warn when the installed plugin version lags the marketplace.
+# SessionStart hook — report plugin freshness at session start.
+#
+# Up to date  => confirm in one short line, including the installed version's commit date.
+# Out of date => warn with a beginner how-to (manual `/plugin update` + restart).
 #
 # Why: for third-party (git) marketplaces, Claude Code's autoUpdate pulls the marketplace
 # clone but does NOT roll the installed plugin forward, and a restart does not reliably fix
@@ -58,12 +61,24 @@ latest="$(remote_latest)"
 
 [ -n "$latest" ] || exit 0
 
+installed_short="${installed_sha:0:7}"
+
 # --- up to date when the installed sha is a prefix of the full latest sha ---
+# Confirm freshness (with the installed version's commit date) instead of staying silent.
 case "$latest" in
-  "$installed_sha"*) exit 0 ;;
+  "$installed_sha"*)
+    # commit date of the installed version, read from the marketplace clone (best-effort)
+    version_date="$(git -C "$clone" show -s --format=%cd --date=short "$installed_sha" 2>/dev/null)"
+    if [ -n "$version_date" ]; then
+      ok_msg="The «${plugin}» plugin is up to date — latest version from ${version_date} (${installed_short}). At the very START of your first reply this session, tell the user, in their language, in ONE short friendly line that their «${plugin}» plugin is current and include that date (${version_date}). Output only that single line — do not turn it into a task or add anything else."
+    else
+      ok_msg="The «${plugin}» plugin is up to date (${installed_short}). At the very START of your first reply this session, tell the user, in their language, in ONE short friendly line that their «${plugin}» plugin is current. Output only that single line — do not turn it into a task or add anything else."
+    fi
+    printf '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"%s"}}\n' "$ok_msg"
+    exit 0
+    ;;
 esac
 
-installed_short="${installed_sha:0:7}"
 latest_short="${latest:0:7}"
 update_cmd="/plugin update ${plugin}@${marketplace}"
 
