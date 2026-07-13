@@ -84,10 +84,11 @@ digraph delivery {
     a4 [label="Реализация\n(worktree + subagent-driven-development)"];
     a5 [label="ЛОКАЛЬНАЯ проверка\n(dev-сервер: API stage/prod;\nагент предлагает прокликать сам)\nДО push"];
     a5b [label="Автотест-импакт-чек\n(autotest_impact) ДО push"];
+    a5c [label="Копи-линт EN-ключей\n(i18n-readiness) ДО i18n-платформы"];
     a6 [label="Push + Draft MR\n(§MR: EN + чек-лист + self-check)"];
     a7 [label="Стейдж-смоук\n(delivery_qa_smoke: слот ИЛИ\nвременный деплой) ПОСЛЕ push"];
     a8 [label="Ревью фронтендера\n(GitLab)"];
-    a0 -> a1 -> a2 -> a3 -> a4 -> a5 -> a5b -> a6 -> a7 -> a8;
+    a0 -> a1 -> a2 -> a3 -> a4 -> a5 -> a5b -> a5c -> a6 -> a7 -> a8;
   }
 
   subgraph cluster_b {
@@ -99,10 +100,11 @@ digraph delivery {
     b3 [label="Фикс\n(worktree + регресс-тест)"];
     b4 [label="ЛОКАЛЬНАЯ проверка\n(dev-сервер; before/after;\nагент может прокликать сам)\nДО push"];
     b4b [label="Автотест-импакт-чек\n(autotest_impact) ДО push"];
+    b4c [label="Копи-линт EN-ключей\n(если менялся текст)"];
     b5 [label="Push + Draft MR bugfix-*\n(§MR: EN + чек-лист + self-check)"];
     b6 [label="Стейдж-смоук\n(delivery_qa_smoke) ПОСЛЕ push"];
     b7 [label="Ревью фронтендера\n(GitLab)"];
-    b0 -> b1 -> b2 -> b3 -> b4 -> b4b -> b5 -> b6 -> b7;
+    b0 -> b1 -> b2 -> b3 -> b4 -> b4b -> b4c -> b5 -> b6 -> b7;
   }
 
   subgraph cluster_c {
@@ -113,10 +115,11 @@ digraph delivery {
     c2 [label="Фикс в ВЕТКЕ MR\n(worktree; i18n:build при текстах)"];
     c3 [label="ЛОКАЛЬНАЯ проверка\n(dev-сервер; агент может\nпрокликать сам) ДО push"];
     c3b [label="Автотест-импакт-чек\n(autotest_impact) ДО push"];
+    c3c [label="Копи-линт EN-ключей\n(при правке текстов)"];
     c4 [label="Push в ветку MR\n(согласовать с автором)"];
     c5 [label="Стейдж-смоук\n(delivery_qa_smoke: слот/деплой)\nПОСЛЕ push"];
     c6 [label="Согласование / ревью\n(НЕ force-push чужое)"];
-    c0 -> c1 -> c2 -> c3 -> c3b -> c4 -> c5 -> c6;
+    c0 -> c1 -> c2 -> c3 -> c3b -> c3c -> c4 -> c5 -> c6;
   }
 
   terminal [label="Апрув фронтендера →\nМерж/деплой делают QA или фронтендер\n(флоу НИКОГДА не мержит)", shape=box, style="rounded,filled", fillcolor="#d4edda"];
@@ -148,6 +151,7 @@ digraph delivery {
 | Задача про **ключевую доменную под-фичу продукта** (модель, экраны, состояния, гейты) | `${CLAUDE_PLUGIN_ROOT}/context/dca.md` ⟪ADAPT: имя файла центрального объекта — см. `ADAPT.md`⟫ |
 | **Аналитика** (события, свойства, паттерн `place`) | `${CLAUDE_PLUGIN_ROOT}/context/analytics.md` |
 | **Изменение фронта могло задеть автотесты e2e-сьюты** (гейт стадии 5; отчёт QA, тесты не правим) | `${CLAUDE_PLUGIN_ROOT}/skills/autotest_impact/SKILL.md` |
+| **Качество исходной EN-копи / i18n-readiness** (линт новых ключей перед i18n-платформой; voice/глоссарий) | `references/repo-conventions.md §i18n` ⟪ADAPT: + свой линтер исходной копи, если есть⟫ |
 
 ---
 
