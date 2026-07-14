@@ -121,8 +121,8 @@ UX-советы.
    фокус/клавиатура, контраст, состояния загрузки/ошибок, консистентность.
 6. **Отчёт.** Заполни `references/qa-mr-report.md` → сохрани в папку задачи рабочего воркспейса:
    **`tasks/qa-mr-<iid>-<слаг>/report.md`**, скриншоты — рядом в `tasks/qa-mr-<iid>-<слаг>/screenshots/`
-   (конвенция delivery-флоу: все артефакты задачи в одной папке — `delivery_orchestrator/references/workspace-layout.md`). Если в воркспейсе нет `tasks/`-раскладки —
-   фолбэк `docs/reports/YYYY-MM-DD-<mr-слаг>.md` + `artifacts/<mr-слаг>/`. Зафиксируй слот/билд, против
+   (конвенция delivery-флоу: все артефакты задачи в одной папке — `delivery_orchestrator/references/workspace-layout.md`). Нет `tasks/`-раскладки —
+   всё равно создать `tasks/qa-mr-<iid>-<слаг>/` (`mkdir` дёшев; плоских фолбэков нет). Зафиксируй слот/билд, против
    которого гонялось. Заверши блоком **Notion-ready**.
 
 ## Правила
