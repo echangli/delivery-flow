@@ -180,7 +180,7 @@ _(заполняется автоматически — сводка всех `A
 `grep -rn 'ADAPT:' .`)_
 
 <!-- ADAPT-REGISTRY-START -->
-Всего **504 места** адаптации. Проверка на «всё ли закрыто»: `grep -rn 'ADAPT:' .` → в конце пусто (кроме этого файла). Файлы по убыванию числа меток (больше меток = больше вписывать; начинай сверху):
+Всего **521 место** адаптации. Проверка на «всё ли закрыто»: `grep -rn 'ADAPT:' .` → в конце пусто (кроме этого файла). Файлы по убыванию числа меток (больше меток = больше вписывать; начинай сверху):
 
 | Файл (от корня репо) | Мест | Слой |
 |---|---|---|
@@ -193,6 +193,7 @@ _(заполняется автоматически — сводка всех `A
 | `plugins/delivery/skills/delivery_orchestrator/references/second-repo-profile.md` | 26 | второй репо (опц.) |
 | `plugins/delivery/skills/delivery_qa_smoke/SKILL.md` | 24 | стейдж/деплой |
 | `plugins/delivery/skills/delivery_orchestrator/references/track-c.md` | 17 | флоу/i18n |
+| `plugins/delivery/skills/qa_backend/references/backend-profile.md` | 16 | бэкенд-QA (профиль) |
 | `plugins/delivery/context/platform.md` | 14 | продукт |
 | `plugins/delivery/skills/qa_mr/SKILL.md` | 13 | QA/репо |
 | `plugins/delivery/skills/delivery_orchestrator/references/track-b.md` | 13 | флоу/репо |
@@ -210,10 +211,11 @@ _(заполняется автоматически — сводка всех `A
 | `.claude-plugin/marketplace.json` | 2 | именование |
 | `plugins/delivery/skills/qa_mr/references/test-plan.md` | 1 | продукт |
 | `plugins/delivery/skills/qa_mr/references/qa-mr-report.md` | 1 | дизайн-система |
+| `plugins/delivery/skills/qa_backend/SKILL.md` | 1 | бэкенд-QA (фикстуры) |
 
 (Плюс 19 меток в самом `ADAPT.md` — это примеры внутри инструкций, не «вписать».)
 
 **Про i18n:** платформа переводов — **опциональна**. Если у вас есть i18n-платформа/TMS — впишите её в `⟪ADAPT:⟫`-местах; **нет мультиязычности — просто удалите i18n-шаги** (весь § i18n в `repo-conventions.md`, i18n-строки в `delivery_setup`/`access-gates`/`track-c`).
 
-Файлы без меток (готовы как есть, чистая механика): `hooks/hooks.json`, `hooks/language-reminder.json`, `commands/deliver.md`, `model-policy.md`, `qa_mr/references/{bug-report,checklist}.md`.
+Файлы без меток (готовы как есть, чистая механика): `hooks/hooks.json`, `hooks/language-reminder.json`, `commands/deliver.md`, `model-policy.md`, `qa_mr/references/{bug-report,checklist}.md`, `qa_mr/references/test-design-techniques.md` (домен-агностичный арсенал техник), `qa_backend/references/hints.md` (пустой накопитель).
 <!-- ADAPT-REGISTRY-END -->
