@@ -6,7 +6,7 @@ description: Use when e2e selectors drift from the live frontend surface — bef
 # /selectors_sync — синк `data-test` с живой поверхностью
 
 Снимает фактические `data-test` с живой поверхности на слоте, диффит с `selectors.ts` этой
-поверхности в `<frontend>/⟪ADAPT: путь к e2e-сьюте, напр. e2e/web⟫/src/<surface>/` и приводит их к согласию.
+поверхности в `<frontend>/⟦E2E_PATH⟧/src/<surface>/` и приводит их к согласию.
 Формат id и правило generic-элементов — `../autotest/references/autotest-conventions.md`.
 
 ## Процесс
@@ -26,8 +26,8 @@ description: Use when e2e selectors drift from the live frontend surface — bef
    - id есть в `selectors.ts`, нет на странице → проверь состояние UI (за оверлеем? фича-флаг?),
      реально удалён из фронта → пометь/убери вместе с шагами, которые на него ссылаются;
    - элемент есть, но `data-test` **generic** (`"Button"`, `"Input"` из ui-kit) → в отчёт, раздел
-     «нужен уникальный `data-test`» (просьба к фронту или сразу ⟪ADAPT: способ проставить data-test, напр. useTestId⟫ — см. конвенции).
-4. **Сверка с кодом фронта** (если репо доступно): `grep -r "⟪ADAPT: хелпер data-test, напр. useTestId⟫\|data-test"` по модулю в
+     «нужен уникальный `data-test`» (просьба к фронту или сразу ⟦DATA_TEST_HELPER⟧ — см. конвенции).
+4. **Сверка с кодом фронта** (если репо доступно): `grep -r "⟦DATA_TEST_HELPER⟧\|data-test"` по модулю в
    `⟪ADAPT: путь к исходникам фронта, напр. apps/web-client/src⟫/` — ловит id, которые рендерятся только в редких состояниях.
 5. **Выход:** обновлённый `selectors.ts` (staged, без коммита) + короткий отчёт: добавлено /
    расхождения / generic-зоны. Закрой браузер (`browser_close`).

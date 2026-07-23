@@ -5,19 +5,19 @@ description: Use when running frontend e2e Playwright specs against a stage slot
 
 # /autotest_run — прогнать и довести до зелёного
 
-Прогон спек из `<frontend>/⟪ADAPT: путь к e2e-сьюте, напр. e2e/web⟫` против слота стейджа + починка падений.
+Прогон спек из `<frontend>/⟦E2E_PATH⟧` против слота стейджа + починка падений.
 Карта сюита и env — `../autotest/references/autotest-conventions.md`.
 
 ## Гейт
 
 devVPN включён; слот отвечает (`curl -sS -o /dev/null -w "%{http_code}" "$SLOT_URL"` с таймаутом).
-`SLOT_URL`: `.env` рабочей папки / `⟪ADAPT: путь к e2e-сьюте, напр. e2e/web⟫/.env` (`⟪ADAPT: скрипт копирования env, напр. init:staging⟫` копирует `example.env`) /
+`SLOT_URL`: `.env` рабочей папки / `⟦E2E_PATH⟧/.env` (`⟪ADAPT: скрипт копирования env, напр. init:staging⟫` копирует `example.env`) /
 авто-деплой временного стейджа по MR — `../delivery_qa_smoke/SKILL.md` §2. Слот не отвечает →
 попроси VPN/слот и не «висни».
 
 ## Прогон
 
-Из `<frontend>/⟪ADAPT: путь к e2e-сьюте, напр. e2e/web⟫` (или worktree ветки):
+Из `<frontend>/⟦E2E_PATH⟧` (или worktree ветки):
 
 ```bash
 # точечный spec, зеркалит CI
@@ -48,7 +48,7 @@ SLOT_URL=https://<слот>/ npx playwright test src/<surface>/<name>.spec.ts \
 
 ## Правила
 
-- Чини тест, не продукт: продуктовый код в рамках прогона не менять (исключение — ⟪ADAPT: способ проставить data-test, напр. useTestId⟫
+- Чини тест, не продукт: продуктовый код в рамках прогона не менять (исключение — ⟦DATA_TEST_HELPER⟧
   для отсутствующего `data-test`, отдельным коммитом).
 - Ретраи маскируют только сетевой флак — ассертные падения разбирай, а не перезапускай.
 - Не выдумывай результаты: прогона не было (нет слота/браузеров) → `[не прогнано: причина]`.

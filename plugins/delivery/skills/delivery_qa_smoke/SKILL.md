@@ -27,7 +27,7 @@ description: Use after a draft MR exists to run a light QA smoke of a frontend c
 ## 2. Предусловия
 
 ### dev-VPN до стейджа
-Включи **VPN-клиент** (`⟪ADAPT: ваш VPN-клиент⟫`). Без VPN стейдж недоступен — смоук остановится на
+Включи **VPN-клиент** (`⟦VPN_CLIENT⟧`). Без VPN стейдж недоступен — смоук остановится на
 проверке доступности слота; выдай отчёт с пометкой `[не проверено: нет VPN]`.
 
 ### Playwright MCP
@@ -51,7 +51,7 @@ claude mcp add --scope user --transport stdio playwright -- npx -y @playwright/m
 > `.gitignore`. Путь относительный — резолвится от папки запуска сессии (скиллы delivery гоняются из
 > рабочей папки флоу). Канон и починка старых конфигов — `delivery_orchestrator/references/workspace-layout.md` § 1/§ 4.
 > Это **разовая настройка**. Если команда не идёт или ты не работаешь с терминалом — попроси помочь
-> в `⟪ADAPT: ваш чат-канал для запросов доступа⟫` (или передай смоук QA).
+> в `⟦CHAT_CHANNEL⟧` (или передай смоук QA).
 
 ### Где брать стейдж для смоука
 **Основной путь — агент сам деплоит временный стейдж и забирает ссылку** через GitLab API (ниже, «Стейдж
@@ -72,12 +72,12 @@ SLOT_URL=https://<url-твоего-слота-стейджа>
 человеку не надо идти в GitLab.
 
 Нужно: **dev-VPN**, **токен со scope `api`** (`write_repository` на API даёт `403`, см. `delivery_setup §2.3`),
-`curl`. Проект `⟪ADAPT: группа/путь репо⟫`. **MR-JSON парсить с `strict=False`** — в title/description бывают
+`curl`. Проект `⟦REPO_GROUP⟧`. **MR-JSON парсить с `strict=False`** — в title/description бывают
 control-символы (иначе `json.load` падает `Invalid control character`).
 
 **Шаг 1 — забрать ссылку (часто слот УЖЕ поднят → деплой не нужен).** Идти от **окружения**, а не от имени джобы:
 ```bash
-PROJ=⟪ADAPT: URL-encoded группа/путь репо⟫; API=https://⟪ADAPT: ваш git-хост⟫/api/v4
+PROJ=⟪ADAPT: URL-encoded группа/путь репо⟫; API=https://⟦GIT_HOST⟧/api/v4
 H="PRIVATE-TOKEN: $GIT_API_TOKEN"          # scope api; не в чат, не в git (настроен в delivery_setup §2.0)
 MR=<iid>
 curl -s -H "$H" "$API/projects/$PROJ/environments?states=available&search=⟪ADAPT: префикс имени окружения⟫-$MR" \
@@ -175,7 +175,7 @@ e2e-сьюта не покрывает (напр. новый контрол на
 
 > **Почему слот, а не локалка, для state-dependent UI.** Состояния, завязанные на бэк (locked/empty/role,
 > сущность в нужном статусе) трудно поднять локально; вдобавок агент **не кликает сквозь mkcert
-> cert-интерстишл** на `https://⟪ADAPT: локальный dev-хост⟫` (Playwright/preview упирается в предупреждение
+> cert-интерстишл** на `https://⟦DEV_HOST⟧` (Playwright/preview упирается в предупреждение
 > сертификата). На слоте — настоящий сертификат, реальные состояния и рабочий OAuth. Локалка годится лишь
 > подтвердить, что собирается/рендерится.
 
@@ -327,7 +327,7 @@ e2e-сьюта не покрывает (напр. новый контрол на
 После того как все пункты smoke-чеклиста пройдены:
 
 1. MR остаётся **Draft** — мерж/деплой делает QA или фронтендер после полного ревью.
-2. Передать QA в **Slack** (`⟪ADAPT: ваш чат-канал для запросов доступа⟫`):
+2. Передать QA в **Slack** (`⟦CHAT_CHANNEL⟧`):
    - ссылку на MR;
    - заполненный smoke-чеклист;
    - скриншоты (или ссылку на `tasks/<слаг>/screenshots/`);
@@ -357,7 +357,7 @@ Smoke-чеклист:
 - **`qa_mr`** — полный QA-разбор любого (обычно чужого) MR: diff с анализом компонентов, маппинг
   `data-test`, живой прогон, UX/UI-советы, отчёт. Зови его, когда MR отдают «на QA», а не для
   смоука собственной доставки.
-- **`autotest` / `selectors_sync` / `autotest_run`** — durable-автотесты в `⟪ADAPT: путь к e2e-тестам, напр. e2e/web⟫`:
+- **`autotest` / `selectors_sync` / `autotest_run`** — durable-автотесты в `⟦E2E_PATH⟧`:
   написать тест по итогам смоука/разбора, синхронизировать `data-test`-селекторы, прогнать и
   довести до зелёного.
 

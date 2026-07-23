@@ -7,8 +7,8 @@
 
 ## Сигналы S1–S5 и греп-рецепты
 
-Дифф: `git diff origin/main...HEAD -- ⟪ADAPT: путь к приложению фронта, напр. apps/web-client⟫`
-(+ shared-пакеты с `generateTestId`). Сьюту грепаем в `<frontend>/⟪ADAPT: e2e-сьюта, напр. e2e/web⟫/src`.
+Дифф: `git diff origin/main...HEAD -- ⟦APP_PATH⟧`
+(+ shared-пакеты с `generateTestId`). Сьюту грепаем в `<frontend>/⟦E2E_PATH⟧/src`.
 
 | # | Сигнал | Что берём из диффа (удалённые `-` строки) | Греп по сьюте |
 |---|---|---|---|

@@ -3,9 +3,9 @@ name: autotest
 description: Use when someone asks to write or extend a durable Playwright e2e autotest for the frontend (e2e suite) — from a scenario description, an MR, a qa_mr report, or a shipped feature that needs regression coverage.
 ---
 
-# /autotest — написать durable-автотест в `⟪ADAPT: путь к e2e-сьюте, напр. e2e/web⟫`
+# /autotest — написать durable-автотест в `⟦E2E_PATH⟧`
 
-Пишет боевой Playwright-тест в `<frontend>/⟪ADAPT: путь к e2e-сьюте, напр. e2e/web⟫` по сценарию / MR / отчёту `qa_mr`.
+Пишет боевой Playwright-тест в `<frontend>/⟦E2E_PATH⟧` по сценарию / MR / отчёту `qa_mr`.
 **Конвенции и карта сюита — `references/autotest-conventions.md`: прочитай ПЕРЕД авторингом**,
 не выводи устройство из головы.
 
@@ -23,7 +23,7 @@ description: Use when someone asks to write or extend a durable Playwright e2e a
 2. **Селекторы.** Собери `data-test` затронутых элементов: сверь с существующим `selectors.ts`
    поверхности, живой страницей (скилл `selectors_sync`) и кодом фронта. Generic-элементы дизайн-системы —
    правило «контейнер + роль» из конвенций. **Не выдумывать id.** Нет `data-test` у ключевого
-   элемента — добавь во фронте через ⟪ADAPT: способ проставить data-test, напр. хелпер useTestId⟫
+   элемента — добавь во фронте через ⟦DATA_TEST_HELPER⟧
    (отдельным коммитом) или зафиксируй просьбу к фронту.
 3. **Состояние (ARRANGE).** Нужен логин/деньги → фикстура `fixtures/authed.ts`
    (`test.use({ authed: true })` / `{ funded: true, fundAmount: '…' }`); гостевой →
@@ -36,8 +36,8 @@ description: Use when someone asks to write or extend a durable Playwright e2e a
    отдельными describe, если флоу на них отличается (другие точки входа — см. конвенции).
 6. **Прогон и доводка.** Передай в скилл `autotest_run`: прогон на слоте, починка флака,
    до зелёного. Затем ⟪ADAPT: команды проверки типов + линта e2e, напр. npm run ci:type + npm run ci:eslint⟫
-   из `⟪ADAPT: путь к e2e-сьюте, напр. e2e/web⟫`. **Менял код фронта**
-   (напр. добавил `data-test` через ⟪ADAPT: способ проставить data-test⟫ в `⟪ADAPT: путь к приложению фронта, напр. apps/web-client⟫`) — прогони green-sequence и там
+   из `⟦E2E_PATH⟧`. **Менял код фронта**
+   (напр. добавил `data-test` через ⟦DATA_TEST_HELPER⟧ в `⟦APP_PATH⟧`) — прогони green-sequence и там
    (`⟪ADAPT: полный green-sequence фронта, напр. ci:type/ci:eslint/oxfmt/knip, из корня⟫`) и пройди **dev-check стадии 5 перед push**:
    подтверди, что элемент рендерится и `data-test` реально в DOM (проще всего — живой клик/прогон
    спеки против дев-сервера `⟪ADAPT: URL локального дев-сервера⟫`), иначе hook-гейт не пустит пуш.
