@@ -308,7 +308,7 @@ update …@…`. Если `autoUpdate: true`, а версия всё равно 
 клоны marketplace целиком — плагин может быть в кэше и при этом не установлен):
 
 ```bash
-python3 -c "import json,os;p=os.path.expanduser('~/.claude/plugins/installed_plugins.json');d=json.load(open(p)) if os.path.exists(p) else {};print(json.dumps(d,ensure_ascii=False)[:1200])"
+python3 -c "import json,os;p=os.path.expanduser('~/.claude/plugins/installed_plugins.json');d=json.load(open(p)) if os.path.exists(p) else {};print(sorted(d.get('plugins', {})))"
 ```
 
 Ожидаемо: в выводе видны установленные плагины ваших marketplace. Нет плагина визуального стандарта или
