@@ -46,7 +46,7 @@
 | Ключ | Что это | Значение | Где используется |
 |---|---|---|---|
 | `⟦I18N_TOKEN_ENV⟧` | env-переменная токена вашей i18n-платформы/TMS | ⟪ADAPT: напр. I18N_TOKEN⟫ | delivery_setup, access-gates, repo-conventions |
-| `⟦I18N_CMD⟧` | CLI-команда вашей i18n-платформы | ⟪ADAPT: напр. spectra⟫ | repo-conventions, track-c |
+| `⟦I18N_CMD⟧` | CLI-команда вашей i18n-платформы | ⟪ADAPT: напр. `lokalise2`, `crowdin`, свой CLI⟫ | repo-conventions, track-c |
 
 > **Композиции.** Где нужен под-путь — комбинируй ключи прямо в тексте: dev-URL = `https://⟦DEV_HOST⟧:⟦DEV_PORT⟧`;
 > исходники приложения = `⟦APP_PATH⟧/src`; e2e-конфиг = `⟦FRONTEND_REPO⟧/⟦E2E_PATH⟧`.
