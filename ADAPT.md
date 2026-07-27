@@ -247,11 +247,11 @@ _(заполняется автоматически — сводка всех `A
 
 | Файл (от корня репо) | Мест | Слой |
 |---|---|---|
-| `plugins/delivery/skills/delivery_setup/SKILL.md` | 74 | окружение/репо/i18n |
-| `plugins/delivery/skills/delivery_orchestrator/references/repo-conventions.md` | 60 | репо/сборка/i18n |
+| `plugins/delivery/skills/delivery_setup/SKILL.md` | 76 | окружение/репо/i18n/визуальный стандарт |
+| `plugins/delivery/skills/delivery_orchestrator/references/repo-conventions.md` | 62 | репо/сборка/i18n/визуальный стандарт |
 | `plugins/delivery/skills/delivery_orchestrator/references/access-gates.md` | 47 | доступы/i18n |
-| `plugins/delivery/README.md` | 41 | онбординг/установка |
-| `plugins/delivery/skills/delivery_orchestrator/references/track-a.md` | 32 | флоу/репо/i18n |
+| `plugins/delivery/README.md` | 42 | онбординг/установка/визуальный стандарт |
+| `plugins/delivery/skills/delivery_orchestrator/references/track-a.md` | 34 | флоу/репо/i18n/визуальный стандарт |
 | `plugins/delivery/skills/autotest/references/autotest-conventions.md` | 29 | e2e |
 | `plugins/delivery/skills/delivery_orchestrator/references/second-repo-profile.md` | 26 | второй репо (опц.) |
 | `plugins/delivery/skills/delivery_qa_smoke/SKILL.md` | 24 | стейдж/деплой |
@@ -265,11 +265,11 @@ _(заполняется автоматически — сводка всех `A
 | `plugins/delivery/context/analytics.md` | 10 | продукт |
 | `plugins/delivery/SLACK.md` | 9 | онбординг |
 | `plugins/delivery/skills/delivery_qa_smoke/references/platform-map.md` | 8 | продукт |
-| `plugins/delivery/skills/delivery_orchestrator/SKILL.md` | 8 | флоу/репо |
+| `plugins/delivery/skills/delivery_orchestrator/SKILL.md` | 13 | флоу/репо/визуальный стандарт |
 | `plugins/delivery/skills/delivery_qa_smoke/references/test-data.md` | 7 | продукт |
 | `plugins/delivery/skills/autotest_run/SKILL.md` | 7 | e2e |
 | `plugins/delivery/skills/delivery_qa_smoke/references/auth-scenario.md` | 6 | продукт/авторизация |
-| `plugins/delivery/skills/delivery_prototype/SKILL.md` | 6 | дизайн-система |
+| `plugins/delivery/skills/delivery_prototype/SKILL.md` | 7 | дизайн-система/визуальный стандарт |
 | `plugins/delivery/skills/selectors_sync/SKILL.md` | 4 | e2e |
 | `.claude-plugin/marketplace.json` | 2 | именование |
 | `plugins/delivery/skills/qa_mr/references/test-plan.md` | 1 | продукт |
@@ -279,6 +279,12 @@ _(заполняется автоматически — сводка всех `A
 (Плюс 19 меток в самом `ADAPT.md` — это примеры внутри инструкций, не «вписать».)
 
 **Про i18n:** платформа переводов — **опциональна**. Если у вас есть i18n-платформа/TMS — впишите её в `⟪ADAPT:⟫`-местах; **нет мультиязычности — просто удалите i18n-шаги** (весь § i18n в `repo-conventions.md`, i18n-строки в `delivery_setup`/`access-gates`/`track-c`).
+
+**Про визуальный стандарт (design quality gate):** тоже **опционально**, тот же паттерн, что копи-линтер выше (`⟪ADAPT: если у команды есть плагин/инструмент …⟫` → своё имя, или используется встроенный инлайн-фолбэк). Три новых сквозных плейсхолдера, ищутся тем же `grep -rn 'ADAPT:' .`:
+- **сам плагин/инструмент визуального стандарта** (якорение на эталоны продукта, анти-ИИ-правила, обязательные состояния, дизайн-ревью диффа, хэндофф дизайнеру) — впишите своё имя или удалите шаги, если такого инструмента у команды нет (тогда флоу идёт на встроенных инлайн-фолбэках: сжатый ui-kit-аудит + анти-ИИ-чеклист + состояния вручную);
+- **карта эталонных экранов продукта** (для anchor-first на прототипе и правке вёрстки) — если у инструмента визуального стандарта есть такая карта, сошлитесь на неё; нет — фолбэк «искать аналоги грепом рядом с местом правки» уже вписан;
+- **матрица обязательных состояний** (loading/empty/error/длинный текст/экстремальные числа/mobile/обе темы/интерактив) — та же логика: сослаться на свою или использовать перечисленный в тексте набор как есть.
+Файлы: `README.md`, `SLACK.md`, `delivery_orchestrator/SKILL.md` (+ §7.1), `repo-conventions.md`, `track-a.md`, `track-b.md`, `track-c.md`, `workspace-layout.md`, `delivery_prototype/SKILL.md`, `delivery_setup/SKILL.md`, `qa_mr/SKILL.md`.
 
 Файлы без меток (готовы как есть, чистая механика): `hooks/hooks.json`, `hooks/language-reminder.json`, `commands/deliver.md`, `model-policy.md`, `qa_mr/references/{bug-report,checklist}.md`, `qa_mr/references/test-design-techniques.md` (домен-агностичный арсенал техник), `qa_backend/references/hints.md` (пустой накопитель).
 <!-- ADAPT-REGISTRY-END -->
