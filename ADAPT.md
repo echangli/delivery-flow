@@ -45,7 +45,9 @@
   демо-панелью всех развилок.
 - **Guardrails** (жёсткие правила): агент никогда не мержит и не деплоит сам; не делает force-push чужой
   ветки; проверяет локально до пуша; ведёт лог заметок.
-- **Хуки**: языковое напоминание + опциональный гейт «dev-check перед push».
+- **Хуки**: языковое напоминание и проверка версии плагина — оба **само-скоупятся** на проекты, где
+  вы реально гоняете флоу (гейт `hooks/delivery-context.sh`), и молчат в остальных проектах на машине;
+  + опциональный гейт «dev-check перед push».
 
 Всё это — переносимо. Не переносится только то, что физически про исходный проект: конкретный
 фронт-репозиторий, команды сборки, дизайн-система, i18n-локали и доменная модель продукта. Их ты и подставляешь.
@@ -272,6 +274,7 @@ _(заполняется автоматически — сводка всех `A
 | `plugins/delivery/skills/delivery_prototype/SKILL.md` | 7 | дизайн-система/визуальный стандарт |
 | `plugins/delivery/skills/selectors_sync/SKILL.md` | 4 | e2e |
 | `.claude-plugin/marketplace.json` | 2 | именование |
+| `plugins/delivery/hooks/delivery-context.sh` | 2 | скоуп хуков (path/remote паттерны под ваш репо) |
 | `plugins/delivery/skills/qa_mr/references/test-plan.md` | 1 | продукт |
 | `plugins/delivery/skills/qa_mr/references/qa-mr-report.md` | 1 | дизайн-система |
 | `plugins/delivery/skills/qa_backend/SKILL.md` | 1 | бэкенд-QA (фикстуры) |
@@ -286,5 +289,5 @@ _(заполняется автоматически — сводка всех `A
 - **матрица обязательных состояний** (loading/empty/error/длинный текст/экстремальные числа/mobile/обе темы/интерактив) — та же логика: сослаться на свою или использовать перечисленный в тексте набор как есть.
 Файлы: `README.md`, `SLACK.md`, `delivery_orchestrator/SKILL.md` (+ §7.1), `repo-conventions.md`, `track-a.md`, `track-b.md`, `track-c.md`, `workspace-layout.md`, `delivery_prototype/SKILL.md`, `delivery_setup/SKILL.md`, `qa_mr/SKILL.md`.
 
-Файлы без меток (готовы как есть, чистая механика): `hooks/hooks.json`, `hooks/language-reminder.json`, `commands/deliver.md`, `model-policy.md`, `qa_mr/references/{bug-report,checklist}.md`, `qa_mr/references/test-design-techniques.md` (домен-агностичный арсенал техник), `qa_backend/references/hints.md` (пустой накопитель).
+Файлы без меток (готовы как есть, чистая механика): `hooks/hooks.json`, `hooks/language-reminder.sh` (обезличен: отвечать на языке пользователя, английский — только для репо), `hooks/check-plugin-version.sh`, `commands/deliver.md`, `model-policy.md`, `qa_mr/references/{bug-report,checklist}.md`, `qa_mr/references/test-design-techniques.md` (домен-агностичный арсенал техник), `qa_backend/references/hints.md` (пустой накопитель). Гейт `hooks/delivery-context.sh` само-скоупит оба хука на проекты флоу — у него 2 `⟪ADAPT⟫`-места (path/remote паттерны, см. таблицу выше); из коробки хуки молчат везде, кроме папки с маркером `.delivery-flow` или совпадением по этим паттернам.
 <!-- ADAPT-REGISTRY-END -->

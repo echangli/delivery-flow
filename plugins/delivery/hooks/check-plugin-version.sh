@@ -26,6 +26,11 @@ set -u
 root="${CLAUDE_PLUGIN_ROOT:-}"
 [ -n "$root" ] || exit 0
 
+# Stay silent outside a project where this flow is used, so this nudge does not fire in every
+# session of every project on the machine (see delivery-context.sh).
+. "${root}/hooks/delivery-context.sh" 2>/dev/null || exit 0
+in_delivery_context || exit 0
+
 # --- derive identifiers from the install path (pure bash, no external tools) ---
 # CLAUDE_PLUGIN_ROOT = <plugins>/cache/<marketplace>/<plugin>/<installed_sha>
 installed_sha="${root##*/}"
