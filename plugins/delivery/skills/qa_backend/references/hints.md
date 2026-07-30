@@ -40,6 +40,12 @@ _Сырые наблюдения текущей сессии. Подтверди
 ## WebSocket-канал (если есть)
 - endpoint, авторизация, формат конверта, как читать отказ
 
+## MCP + OAuth-сервер — живой прогон (если у платформы есть MCP)
+- discovery без токена: GET /.well-known/oauth-protected-resource + /oauth-authorization-server; голый /mcp → 401 + WWW-Authenticate (RFC 9728)
+- флоу через API без браузера: register (public client) → PKCE S256 → authorize (→ request_id) → approve с Bearer субъекта (тут привязка юзера) → token (authorization_code) → refresh
+- вызов: POST /mcp, Bearer MCP-токена, JSON-RPC tools/call; ⟪ADAPT: точные пути consent-ручек, набор инструментов⟫
+- IDOR-чек: мой токен + чужой resource_id по каждой ветке операции — должен быть отказ
+
 ## Грабли order-of-operations
 - что за чем, что «портит» субъекта, что кэшируется
 
