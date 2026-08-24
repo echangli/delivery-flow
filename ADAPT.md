@@ -43,6 +43,8 @@
   `autotest`/`autotest_run`/`selectors_sync` (durable Playwright-автотесты).
 - **Прототип** (`delivery_prototype`): один самодостаточный HTML на токенах вашей дизайн-системы с
   демо-панелью всех развилок.
+- **Релиз-ноутс** (`release_notes`): сборка «что нового» + «границы» по фиче/MR пользовательским
+  языком → кроп-скрины → заполнение релиз-трекера команды (Notion / иное). Explicit-invoke.
 - **Guardrails** (жёсткие правила): агент никогда не мержит и не деплоит сам; не делает force-push чужой
   ветки; проверяет локально до пуша; ведёт лог заметок.
 - **Хуки**: языковое напоминание и проверка версии плагина — оба **само-скоупятся** на проекты, где
@@ -272,6 +274,8 @@ _(заполняется автоматически — сводка всех `A
 | `plugins/delivery/skills/autotest_run/SKILL.md` | 7 | e2e |
 | `plugins/delivery/skills/delivery_qa_smoke/references/auth-scenario.md` | 6 | продукт/авторизация |
 | `plugins/delivery/skills/delivery_prototype/SKILL.md` | 7 | дизайн-система/визуальный стандарт |
+| `plugins/delivery/skills/release_notes/SKILL.md` | 7 | релиз-ноутс/трекер |
+| `plugins/delivery/skills/release_notes/references/release-notes-conventions.md` | 2 | релиз-ноутс/трекер |
 | `plugins/delivery/skills/selectors_sync/SKILL.md` | 4 | e2e |
 | `.claude-plugin/marketplace.json` | 2 | именование |
 | `plugins/delivery/hooks/delivery-context.sh` | 2 | скоуп хуков (path/remote паттерны под ваш репо) |
