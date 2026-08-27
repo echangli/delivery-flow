@@ -327,6 +327,29 @@ python3 -c "import json,os;p=os.path.expanduser('~/.claude/plugins/installed_plu
 Скиллы видны со **следующей** сессии — если человек ставит их сейчас, дальше по флоу использовать фолбэки
 и предложить перезапуск.
 
+### 2.7б Мобильный стек (только для `/qa_mobile` — опционально)
+
+**Нужно ТОЛЬКО если задача — QA нативного Android-приложения** (`/qa_mobile`). Обычный веб-флоу доставки
+это не задевает — пропускай. Проверяет агент сам через Bash:
+
+```bash
+adb devices -l                      # ловит физический девайс/эмулятор
+which mobile 2>/dev/null; ls ~/Library/Android/sdk/system-images/ 2>/dev/null   # SDK + образы
+```
+- **mobile-mcp в `.mcp.json`** рабочей папки (по образцу Playwright MCP) — сервер `mobile`:
+  ```json
+  "mobile": { "command": "npx", "args": ["-y", "@mobilenext/mobile-mcp@latest"] }
+  ```
+  Нет → предложить добавить (после — рестарт сессии, чтобы тулзы `mcp__mobile__*` подхватились).
+- **adb** не найден / девайс не виден → человеку: подключить девайс (USB-отладка) или запустить эмулятор
+  (`emulator -avd <name> -gpu host`). Нет `adb` → Android SDK platform-tools.
+- **arm64 system-images** нужных API (напр. 26/27 для Android 8, 33+ для пуш-промпта, resizable для
+  поворота) — ставит агент через `sdkmanager` / создаёт AVD `avdmanager`; долгая закачка — в фоне.
+- **debug-сборка тестирует стейдж** (нужен дев-VPN, как §2.5); **release/прод-сборка** — прод без VPN.
+- Не гейт основного флоу: чего нет — выдать инструкцию, `/qa_mobile` деградирует и продолжит. Полный
+  стек и грабли — `../qa_mobile/references/mobile-harness.md`.
+
+
 ### 2.8 Дев-сервер на свежем git-worktree
 
 Свежий worktree не имеет `.certs/` и не знает о занятости порта. Проверить заранее, чтобы не ловить

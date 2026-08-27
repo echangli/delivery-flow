@@ -41,6 +41,9 @@
   тексты-i18n).
 - **QA-скиллы**: `qa_mr` (разбор чужого MR), `delivery_qa_smoke` (смоук своего MR на стейдже),
   `autotest`/`autotest_run`/`selectors_sync` (durable Playwright-автотесты).
+- **Мобильный QA** (`qa_mobile`): нативное Android-приложение (WebView-обёртка над тем же web-client) —
+  бридж-свип, деплинки (delivered/durable/deferred), over-install хранилища, permissions, file chooser;
+  стек mobile-mcp + сырой CDP + adb/run-as. Explicit-invoke.
 - **Прототип** (`delivery_prototype`): один самодостаточный HTML на токенах вашей дизайн-системы с
   демо-панелью всех развилок.
 - **Релиз-ноутс** (`release_notes`): сборка «что нового» + «границы» по фиче/MR пользовательским
@@ -130,6 +133,7 @@ git-хост команды (`⟪ADAPT: ваш git-хост⟫`), дев-VPN (`�
 | e2e | путь e2e-сюиты (напр. `e2e/web`), `data-test` через хелпер | `autotest*`, `selectors_sync` |
 | i18n | локали (напр. `en_US`/`ru_RU`), путь generated, команда build | `repo-conventions`, `delivery_setup`, `track-c` |
 | Git-конвенция | regex веток (feature/bugfix/…), префикс тикета | `repo-conventions` |
+| Мобильное приложение (нативный шелл) | пакет(ы) приложения, deeplink-схема (`⟪ADAPT: app://⟫`), объект JS-бриджа, ключ хранилища сессии, файлы pending-store/шифрохранилища, репо нативного шелла | `qa_mobile/*` |
 
 > Общий принцип, который **оставлен как есть** (не плейсхолдер): «следуй git-конвенции своего репо
 > (обычно enforced хуками+CI), и **Claude не добавляет трейлер `Co-Authored-By` / `Generated with Claude
@@ -263,6 +267,10 @@ _(заполняется автоматически — сводка всех `A
 | `plugins/delivery/skills/qa_backend/references/backend-profile.md` | 16 | бэкенд-QA (профиль) |
 | `plugins/delivery/context/platform.md` | 14 | продукт |
 | `plugins/delivery/skills/qa_mr/SKILL.md` | 13 | QA/репо |
+| `plugins/delivery/skills/qa_mobile/references/cdp-recipes.md` | 9 | мобильный QA (CDP-рецепты) |
+| `plugins/delivery/skills/qa_mobile/references/native-checks-matrix.md` | 5 | мобильный QA (матрица) |
+| `plugins/delivery/skills/qa_mobile/references/mobile-harness.md` | 4 | мобильный QA (стек/грабли) |
+| `plugins/delivery/skills/qa_mobile/SKILL.md` | 1 | мобильный QA |
 | `plugins/delivery/skills/delivery_orchestrator/references/track-b.md` | 13 | флоу/репо |
 | `plugins/delivery/skills/autotest/SKILL.md` | 13 | e2e |
 | `plugins/delivery/context/dca.md` | 13 | продукт |
