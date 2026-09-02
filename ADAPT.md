@@ -274,7 +274,7 @@ _(заполняется автоматически — сводка всех `A
 | `plugins/delivery/skills/qa_mobile/references/cdp-recipes.md` | 9 | мобильный QA (CDP-рецепты) |
 | `plugins/delivery/skills/delivery_orchestrator/references/track-b.md` | 9 | флоу/репо |
 | `plugins/delivery/context/analytics.md` | 9 | продукт/аналитика (код + рецепт проверки) |
-| `plugins/delivery/skills/event_tagging/reference/naming-conventions.md` | 8 | аналитика (правила нейминга — зона аналитика) |
+| `plugins/delivery/skills/event_tagging/reference/naming-conventions.md` | 9 | аналитика (правила нейминга — зона аналитика) |
 | `plugins/delivery/skills/delivery_orchestrator/references/track-c.md` | 8 | флоу/i18n/аналитика |
 | `plugins/delivery/skills/event_tagging/SKILL.md` | 7 | аналитика (платформа/MCP/проект) |
 | `plugins/delivery/skills/event_tagging/reference/taxonomy-snapshot.md` | 7 | аналитика (снапшот-заглушка — сгенерировать из своей таксономии) |

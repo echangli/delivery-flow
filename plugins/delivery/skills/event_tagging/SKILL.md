@@ -88,7 +88,7 @@ MCP-вызовов create_events/create_properties/update_event). Результ
    - `mcp__amplitude__search` (`entityTypes: ["EVENT", "EVENT_PROPERTY"]`, `queries: [...]`) — семантический/keyword поиск по актуальной таксономии.
    - `mcp__amplitude__get_events` (`eventTypes: [...]`) — точный статус найденного/похожего события: `isActive`, `isHidden`, `isDeleted`, `isQueryable`, `category`, актуальный `displayName`.
    - `mcp__amplitude__get_properties` (`propertyType: "event"`, `eventType: "<event>"`) — точный текущий список properties события, если планируется UPDATE (добавить/убрать property) — не полагаться на описание из снапшота, оно может быть неполным.
-3. Если кандидат для **CREATE** — убедиться через `search` + `get_events`, что действительно ничего похожего по смыслу не существует (не только точное совпадение имени — synonyms тоже проверять, напр. "buy"/"purchase"/"deposit").
+3. Если кандидат для **CREATE** — убедиться через `search` + `get_events`, что действительно ничего похожего по смыслу не существует (не только точное совпадение имени — synonyms тоже проверять, напр. "signup"/"register"/"create_account").
 4. Если кандидат для **DEPRECATE** — через `get_events` подтвердить текущий статус (что событие ещё активно и не задеплоено с ошибкой) перед тем, как помечать его к депрекейту в спеке.
 
 Применить правила reuse из `naming-conventions.md` §4: похожее событие с другим местом показа → property `place`, а не новый event_type; общий тип действия (копирование, шеринг) → generic-событие + `object_name`, а не новый event_type под объект.
