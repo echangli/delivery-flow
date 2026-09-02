@@ -24,6 +24,9 @@ UX-советы.
 Подробная карта — `../delivery_qa_smoke/references/platform-map.md`.
 Полный продуктовый primer (позиционирование, стримы, инфра, фиче-гейты) — `${CLAUDE_PLUGIN_ROOT}/context/platform.md`;
 по теме MR — `${CLAUDE_PLUGIN_ROOT}/context/⟪ADAPT: файл контекста ключевой фичи⟫.md` (модель ключевой фичи) / `context/analytics.md` (события аналитики).
+Новые/изменённые события в чужом MR сверять с правилами аналитика —
+`${CLAUDE_PLUGIN_ROOT}/skills/event_tagging/reference/naming-conventions.md` + `property-catalog.md`
+(линза QA: дубль/нейминг/потерянные свойства → находка 🟡, не правка).
 
 **Предусловия:** devVPN до стейджа; **Playwright MCP** (проверка/установка — `../delivery_qa_smoke/SKILL.md` §2).
 

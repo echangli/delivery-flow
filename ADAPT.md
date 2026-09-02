@@ -147,7 +147,8 @@ git-хост команды (`⟪ADAPT: ваш git-хост⟫`), дев-VPN (`�
 |---|---|
 | `context/platform.md` | обзор твоей платформы: что за продукт, ключевые поверхности |
 | `context/dca.md` | центральный объект твоего домена — переименуй файл под свой домен и перепиши |
-| `context/analytics.md` | как устроена твоя продуктовая аналитика (события, свойства) |
+| `context/analytics.md` | как устроена твоя продуктовая аналитика в коде (функция логирования, трекеры, ключи окружений) + seed событий |
+| `skills/event_tagging/reference/*` | правила нейминга, каталог свойств, снапшот таксономии и примеры разметки ВАШЕЙ аналитики (стартовые шаблоны) |
 | `delivery_qa_smoke/references/platform-map.md` | карта экранов/роутов: где что смотреть на смоуке |
 | `delivery_qa_smoke/references/test-data.md` | тестовые данные твоего продукта |
 | `delivery_qa_smoke/references/auth-scenario.md` | как логиниться в тестовое окружение |
@@ -251,34 +252,43 @@ _(заполняется автоматически — сводка всех `A
 `grep -rn 'ADAPT:' .`)_
 
 <!-- ADAPT-REGISTRY-START -->
-**Повторяющиеся значения вынесены в `plugins/delivery/context/repo-profile.md`** (ключи `⟦KEY⟧`, ~15 штук, ~170 вхождений) — заполни его **первым** (одна таблица). Ниже — распределение **оставшихся инлайн one-off меток** по файлам (ориентир; точное — `grep -rn 'ADAPT:' .`; в конце — пусто, кроме этого файла и значений в `repo-profile.md`). Числа в таблице даны **до** выноса в профиль (фактических инлайн-остатков меньше); начинай с профиля, затем сверху вниз:
+**Повторяющиеся значения вынесены в `plugins/delivery/context/repo-profile.md`** (ключи `⟦KEY⟧`, ~15 штук, ~200 вхождений) — заполни его **первым** (одна таблица). Ниже — распределение **оставшихся инлайн one-off меток** по файлам (ориентир; точное — `grep -rn 'ADAPT:' .`; в конце — пусто, кроме этого файла и значений в `repo-profile.md`). Начинай с профиля, затем сверху вниз.
+
+> Числа: у файлов, затронутых последними портированиями (аналитика/разметка событий), стоят **фактические**
+> значения `grep -c 'ADAPT:' <файл>`; у остальных — прежняя оценка **до** выноса в профиль (фактических
+> инлайн-остатков меньше). Точная сводка в любой момент — `grep -rc 'ADAPT:' .`.
 
 | Файл (от корня репо) | Мест | Слой |
 |---|---|---|
-| `plugins/delivery/skills/delivery_setup/SKILL.md` | 76 | окружение/репо/i18n/визуальный стандарт |
-| `plugins/delivery/skills/delivery_orchestrator/references/repo-conventions.md` | 62 | репо/сборка/i18n/визуальный стандарт |
-| `plugins/delivery/skills/delivery_orchestrator/references/access-gates.md` | 47 | доступы/i18n |
-| `plugins/delivery/README.md` | 42 | онбординг/установка/визуальный стандарт |
-| `plugins/delivery/skills/delivery_orchestrator/references/track-a.md` | 34 | флоу/репо/i18n/визуальный стандарт |
+| `plugins/delivery/skills/delivery_orchestrator/references/repo-conventions.md` | 41 | репо/сборка/i18n/визуальный стандарт/аналитика |
+| `plugins/delivery/skills/delivery_setup/SKILL.md` | 28 | окружение/репо/i18n/визуальный стандарт/MCP аналитики |
 | `plugins/delivery/skills/autotest/references/autotest-conventions.md` | 29 | e2e |
 | `plugins/delivery/skills/delivery_orchestrator/references/second-repo-profile.md` | 26 | второй репо (опц.) |
-| `plugins/delivery/skills/delivery_qa_smoke/SKILL.md` | 24 | стейдж/деплой |
-| `plugins/delivery/skills/delivery_orchestrator/references/track-c.md` | 17 | флоу/i18n |
 | `plugins/delivery/skills/qa_backend/references/backend-profile.md` | 16 | бэкенд-QA (профиль) |
+| `plugins/delivery/skills/delivery_qa_smoke/SKILL.md` | 15 | стейдж/деплой/события |
+| `plugins/delivery/skills/delivery_orchestrator/references/track-a.md` | 14 | флоу/репо/i18n/визуальный стандарт/аналитика |
+| `plugins/delivery/README.md` | 13 | онбординг/установка/визуальный стандарт/аналитика |
+| `plugins/delivery/skills/delivery_orchestrator/references/access-gates.md` | 13 | доступы/i18n/MCP аналитики |
 | `plugins/delivery/context/platform.md` | 14 | продукт |
-| `plugins/delivery/skills/qa_mr/SKILL.md` | 13 | QA/репо |
+| `plugins/delivery/skills/delivery_orchestrator/SKILL.md` | 11 | флоу/репо/визуальный стандарт/аналитика |
 | `plugins/delivery/skills/qa_mobile/references/cdp-recipes.md` | 9 | мобильный QA (CDP-рецепты) |
+| `plugins/delivery/skills/delivery_orchestrator/references/track-b.md` | 9 | флоу/репо |
+| `plugins/delivery/context/analytics.md` | 9 | продукт/аналитика (код + рецепт проверки) |
+| `plugins/delivery/skills/event_tagging/reference/naming-conventions.md` | 8 | аналитика (правила нейминга — зона аналитика) |
+| `plugins/delivery/skills/delivery_orchestrator/references/track-c.md` | 8 | флоу/i18n/аналитика |
+| `plugins/delivery/skills/event_tagging/SKILL.md` | 7 | аналитика (платформа/MCP/проект) |
+| `plugins/delivery/skills/event_tagging/reference/taxonomy-snapshot.md` | 7 | аналитика (снапшот-заглушка — сгенерировать из своей таксономии) |
+| `plugins/delivery/skills/qa_mr/SKILL.md` | 7 | QA/репо |
 | `plugins/delivery/skills/qa_mobile/references/native-checks-matrix.md` | 5 | мобильный QA (матрица) |
+| `plugins/delivery/skills/event_tagging/templates/*.tpl` | 5 | аналитика (шаблоны спеки и сообщения в чат) |
 | `plugins/delivery/skills/qa_mobile/references/mobile-harness.md` | 4 | мобильный QA (стек/грабли) |
+| `plugins/delivery/skills/delivery_qa_smoke/references/test-data.md` | 4 | продукт |
 | `plugins/delivery/skills/qa_mobile/SKILL.md` | 1 | мобильный QA |
-| `plugins/delivery/skills/delivery_orchestrator/references/track-b.md` | 13 | флоу/репо |
+| `plugins/delivery/skills/event_tagging/reference/property-catalog.md` | 1 | аналитика (каталог сквозных свойств) |
+| `plugins/delivery/skills/delivery_orchestrator/references/workspace-layout.md` | 1 | раскладка задачи |
 | `plugins/delivery/skills/autotest/SKILL.md` | 13 | e2e |
 | `plugins/delivery/context/dca.md` | 13 | продукт |
-| `plugins/delivery/context/analytics.md` | 10 | продукт |
-| `plugins/delivery/SLACK.md` | 9 | онбординг |
 | `plugins/delivery/skills/delivery_qa_smoke/references/platform-map.md` | 8 | продукт |
-| `plugins/delivery/skills/delivery_orchestrator/SKILL.md` | 13 | флоу/репо/визуальный стандарт |
-| `plugins/delivery/skills/delivery_qa_smoke/references/test-data.md` | 7 | продукт |
 | `plugins/delivery/skills/autotest_run/SKILL.md` | 7 | e2e |
 | `plugins/delivery/skills/delivery_qa_smoke/references/auth-scenario.md` | 6 | продукт/авторизация |
 | `plugins/delivery/skills/delivery_prototype/SKILL.md` | 7 | дизайн-система/визуальный стандарт |
@@ -295,11 +305,13 @@ _(заполняется автоматически — сводка всех `A
 
 **Про i18n:** платформа переводов — **опциональна**. Если у вас есть i18n-платформа/TMS — впишите её в `⟪ADAPT:⟫`-местах; **нет мультиязычности — просто удалите i18n-шаги** (весь § i18n в `repo-conventions.md`, i18n-строки в `delivery_setup`/`access-gates`/`track-c`).
 
+**Про аналитику (разметка событий):** опционально — тот же паттерн, что копи-линтер и визуальный стандарт: если у команды есть платформа аналитики с MCP — впишите её в метки скилла `event_tagging` (там же — id проекта, префикс MCP-инструментов, эндпоинт приёма событий) и подключение в `delivery_setup §2.6в`; нет платформы/MCP — шаг 2.4 деградирует в пометку «спека отложена», флоу идёт дальше, имена событий агент не придумывает. Файлы `event_tagging/reference/*` — **стартовые шаблоны** (правила нейминга, каталог свойств, снапшот-заглушка, один обезличенный пример разбора): владелец этих правил — ваш аналитик, наполняйте их его паттернами, а не нашими.
+
 **Про визуальный стандарт (design quality gate):** тоже **опционально**, тот же паттерн, что копи-линтер выше (`⟪ADAPT: если у команды есть плагин/инструмент …⟫` → своё имя, или используется встроенный инлайн-фолбэк). Три новых сквозных плейсхолдера, ищутся тем же `grep -rn 'ADAPT:' .`:
 - **сам плагин/инструмент визуального стандарта** (якорение на эталоны продукта, анти-ИИ-правила, обязательные состояния, дизайн-ревью диффа, хэндофф дизайнеру) — впишите своё имя или удалите шаги, если такого инструмента у команды нет (тогда флоу идёт на встроенных инлайн-фолбэках: сжатый ui-kit-аудит + анти-ИИ-чеклист + состояния вручную);
 - **карта эталонных экранов продукта** (для anchor-first на прототипе и правке вёрстки) — если у инструмента визуального стандарта есть такая карта, сошлитесь на неё; нет — фолбэк «искать аналоги грепом рядом с местом правки» уже вписан;
 - **матрица обязательных состояний** (loading/empty/error/длинный текст/экстремальные числа/mobile/обе темы/интерактив) — та же логика: сослаться на свою или использовать перечисленный в тексте набор как есть.
 Файлы: `README.md`, `SLACK.md`, `delivery_orchestrator/SKILL.md` (+ §7.1), `repo-conventions.md`, `track-a.md`, `track-b.md`, `track-c.md`, `workspace-layout.md`, `delivery_prototype/SKILL.md`, `delivery_setup/SKILL.md`, `qa_mr/SKILL.md`.
 
-Файлы без меток (готовы как есть, чистая механика): `hooks/hooks.json`, `hooks/language-reminder.sh` (обезличен: отвечать на языке пользователя, английский — только для репо), `hooks/check-plugin-version.sh`, `commands/deliver.md`, `model-policy.md`, `qa_mr/references/{bug-report,checklist}.md`, `qa_mr/references/test-design-techniques.md` (домен-агностичный арсенал техник), `qa_backend/references/hints.md` (пустой накопитель). Гейт `hooks/delivery-context.sh` само-скоупит оба хука на проекты флоу — у него 2 `⟪ADAPT⟫`-места (path/remote паттерны, см. таблицу выше); из коробки хуки молчат везде, кроме папки с маркером `.delivery-flow` или совпадением по этим паттернам.
+Файлы без инлайн-меток (готовы как есть, чистая механика; часть ссылается только на `⟦KEY⟧`-ключи профиля): `hooks/hooks.json`, `hooks/language-reminder.sh` (обезличен: отвечать на языке пользователя, английский — только для репо), `hooks/check-plugin-version.sh`, `commands/deliver.md`, `model-policy.md`, `SLACK.md` (только `⟦KEY⟧`), `qa_mr/references/{bug-report,checklist}.md`, `qa_mr/references/test-design-techniques.md` (домен-агностичный арсенал техник), `qa_backend/references/hints.md` (пустой накопитель), `event_tagging/reference/example-specs/01_banner_and_modal_events.md` (обезличенный пример разбора — замените своими) и `event_tagging/templates/README.md.tpl`. Гейт `hooks/delivery-context.sh` само-скоупит оба хука на проекты флоу — у него 2 `⟪ADAPT⟫`-места (path/remote паттерны, см. таблицу выше); из коробки хуки молчат везде, кроме папки с маркером `.delivery-flow` или совпадением по этим паттернам.
 <!-- ADAPT-REGISTRY-END -->
