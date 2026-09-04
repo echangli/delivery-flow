@@ -264,8 +264,8 @@ _(заполняется автоматически — сводка всех `A
 | `plugins/delivery/skills/delivery_setup/SKILL.md` | 28 | окружение/репо/i18n/визуальный стандарт/MCP аналитики |
 | `plugins/delivery/skills/autotest/references/autotest-conventions.md` | 29 | e2e |
 | `plugins/delivery/skills/delivery_orchestrator/references/second-repo-profile.md` | 26 | второй репо (опц.) |
-| `plugins/delivery/skills/qa_backend/references/backend-profile.md` | 16 | бэкенд-QA (профиль) |
-| `plugins/delivery/skills/delivery_qa_smoke/SKILL.md` | 15 | стейдж/деплой/события |
+| `plugins/delivery/skills/qa_backend/references/backend-profile.md` | 20 | бэкенд-QA (профиль) |
+| `plugins/delivery/skills/delivery_qa_smoke/SKILL.md` | 16 | стейдж/деплой/события |
 | `plugins/delivery/skills/delivery_orchestrator/references/track-a.md` | 14 | флоу/репо/i18n/визуальный стандарт/аналитика |
 | `plugins/delivery/README.md` | 13 | онбординг/установка/визуальный стандарт/аналитика |
 | `plugins/delivery/skills/delivery_orchestrator/references/access-gates.md` | 13 | доступы/i18n/MCP аналитики |
@@ -278,7 +278,7 @@ _(заполняется автоматически — сводка всех `A
 | `plugins/delivery/skills/delivery_orchestrator/references/track-c.md` | 8 | флоу/i18n/аналитика |
 | `plugins/delivery/skills/event_tagging/SKILL.md` | 7 | аналитика (платформа/MCP/проект) |
 | `plugins/delivery/skills/event_tagging/reference/taxonomy-snapshot.md` | 7 | аналитика (снапшот-заглушка — сгенерировать из своей таксономии) |
-| `plugins/delivery/skills/qa_mr/SKILL.md` | 7 | QA/репо |
+| `plugins/delivery/skills/qa_mr/SKILL.md` | 8 | QA/репо |
 | `plugins/delivery/skills/qa_mobile/references/native-checks-matrix.md` | 5 | мобильный QA (матрица) |
 | `plugins/delivery/skills/event_tagging/templates/*.tpl` | 5 | аналитика (шаблоны спеки и сообщения в чат) |
 | `plugins/delivery/skills/qa_mobile/references/mobile-harness.md` | 4 | мобильный QA (стек/грабли) |
@@ -299,7 +299,8 @@ _(заполняется автоматически — сводка всех `A
 | `plugins/delivery/hooks/delivery-context.sh` | 2 | скоуп хуков (path/remote паттерны под ваш репо) |
 | `plugins/delivery/skills/qa_mr/references/test-plan.md` | 1 | продукт |
 | `plugins/delivery/skills/qa_mr/references/qa-mr-report.md` | 1 | дизайн-система |
-| `plugins/delivery/skills/qa_backend/SKILL.md` | 1 | бэкенд-QA (фикстуры) |
+| `plugins/delivery/skills/qa_backend/SKILL.md` | 3 | бэкенд-QA (фикстуры, первичка денег, маппинг внешних кодов) |
+| `plugins/delivery/skills/qa_backend/references/stage-trading-harness.md` | 3 | канал внешнего потока данных |
 
 (Плюс 19 меток в самом `ADAPT.md` — это примеры внутри инструкций, не «вписать».)
 
