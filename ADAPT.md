@@ -264,7 +264,7 @@ _(заполняется автоматически — сводка всех `A
 | `plugins/delivery/skills/delivery_setup/SKILL.md` | 28 | окружение/репо/i18n/визуальный стандарт/MCP аналитики |
 | `plugins/delivery/skills/autotest/references/autotest-conventions.md` | 29 | e2e |
 | `plugins/delivery/skills/delivery_orchestrator/references/second-repo-profile.md` | 26 | второй репо (опц.) |
-| `plugins/delivery/skills/qa_backend/references/backend-profile.md` | 20 | бэкенд-QA (профиль) |
+| `plugins/delivery/skills/qa_backend/references/backend-profile.md` | 25 | бэкенд-QA (профиль: стенды, деплой-джоба, логи/метрики, источники требований) |
 | `plugins/delivery/skills/delivery_qa_smoke/SKILL.md` | 16 | стейдж/деплой/события |
 | `plugins/delivery/skills/delivery_orchestrator/references/track-a.md` | 14 | флоу/репо/i18n/визуальный стандарт/аналитика |
 | `plugins/delivery/README.md` | 13 | онбординг/установка/визуальный стандарт/аналитика |
@@ -299,7 +299,8 @@ _(заполняется автоматически — сводка всех `A
 | `plugins/delivery/hooks/delivery-context.sh` | 2 | скоуп хуков (path/remote паттерны под ваш репо) |
 | `plugins/delivery/skills/qa_mr/references/test-plan.md` | 1 | продукт |
 | `plugins/delivery/skills/qa_mr/references/qa-mr-report.md` | 1 | дизайн-система |
-| `plugins/delivery/skills/qa_backend/SKILL.md` | 3 | бэкенд-QA (фикстуры, первичка денег, маппинг внешних кодов) |
+| `plugins/delivery/skills/qa_backend/SKILL.md` | 10 | бэкенд-QA (авто-подтяжка контекста, гейтвеи/точки входа, режимы домена, лог-агрегатор, деплой-джоба, фикстуры, первичка денег, маппинг внешних кодов) |
+| `plugins/delivery/skills/qa_backend/scripts/verify-stage-deploy.sh` | 1 | бэкенд-QA (написан под GitLab CI — под другой git-хост/CI перепиши поиск деплой-джобы) |
 | `plugins/delivery/skills/qa_backend/references/stage-trading-harness.md` | 3 | канал внешнего потока данных |
 
 (Плюс 19 меток в самом `ADAPT.md` — это примеры внутри инструкций, не «вписать».)
@@ -314,5 +315,5 @@ _(заполняется автоматически — сводка всех `A
 - **матрица обязательных состояний** (loading/empty/error/длинный текст/экстремальные числа/mobile/обе темы/интерактив) — та же логика: сослаться на свою или использовать перечисленный в тексте набор как есть.
 Файлы: `README.md`, `SLACK.md`, `delivery_orchestrator/SKILL.md` (+ §7.1), `repo-conventions.md`, `track-a.md`, `track-b.md`, `track-c.md`, `workspace-layout.md`, `delivery_prototype/SKILL.md`, `delivery_setup/SKILL.md`, `qa_mr/SKILL.md`.
 
-Файлы без инлайн-меток (готовы как есть, чистая механика; часть ссылается только на `⟦KEY⟧`-ключи профиля): `hooks/hooks.json`, `hooks/language-reminder.sh` (обезличен: отвечать на языке пользователя, английский — только для репо), `hooks/check-plugin-version.sh`, `commands/deliver.md`, `model-policy.md`, `SLACK.md` (только `⟦KEY⟧`), `qa_mr/references/{bug-report,checklist}.md`, `qa_mr/references/test-design-techniques.md` (домен-агностичный арсенал техник), `qa_backend/references/hints.md` (пустой накопитель), `event_tagging/reference/example-specs/01_banner_and_modal_events.md` (обезличенный пример разбора — замените своими) и `event_tagging/templates/README.md.tpl`. Гейт `hooks/delivery-context.sh` само-скоупит оба хука на проекты флоу — у него 2 `⟪ADAPT⟫`-места (path/remote паттерны, см. таблицу выше); из коробки хуки молчат везде, кроме папки с маркером `.delivery-flow` или совпадением по этим паттернам.
+Файлы без инлайн-меток (готовы как есть, чистая механика; часть ссылается только на `⟦KEY⟧`-ключи профиля): `hooks/hooks.json`, `hooks/language-reminder.sh` (обезличен: отвечать на языке пользователя, английский — только для репо), `hooks/check-plugin-version.sh`, `commands/deliver.md`, `model-policy.md`, `SLACK.md` (только `⟦KEY⟧`), `qa_mr/references/{bug-report,checklist}.md`, `qa_mr/references/test-design-techniques.md` (домен-агностичный арсенал техник), `qa_backend/references/hints.md` (пустой накопитель), `qa_backend/references/matrix-review.md` (промпт адверсарного ревью матрицы, домен-агностичен), `event_tagging/reference/example-specs/01_banner_and_modal_events.md` (обезличенный пример разбора — замените своими) и `event_tagging/templates/README.md.tpl`. Гейт `hooks/delivery-context.sh` само-скоупит оба хука на проекты флоу — у него 2 `⟪ADAPT⟫`-места (path/remote паттерны, см. таблицу выше); из коробки хуки молчат везде, кроме папки с маркером `.delivery-flow` или совпадением по этим паттернам.
 <!-- ADAPT-REGISTRY-END -->
